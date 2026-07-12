@@ -3,6 +3,8 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const pool = require("./config/db");
 
+const vehicleRoutes = require("./routes/vehicleRoutes");
+
 dotenv.config();
 
 const app = express();
@@ -10,12 +12,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Test route
+// Vehicle API
+app.use("/api/vehicles", vehicleRoutes);
+
+// Home Route
 app.get("/", (req, res) => {
   res.send("TransitOps Backend is Running 🚛");
 });
 
-// Test database connection
+// Test Database Connection
 app.get("/test-db", async (req, res) => {
   try {
     const result = await pool.query("SELECT NOW()");
