@@ -32,6 +32,10 @@ export function TransitOpsApp() {
   const [tab, setTab] = useState<Tab>("dashboard");
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const handleSignOut = () => {
+  setEntered(false);
+  }
+  
   if (!entered) return <Landing onEnter={() => setEntered(true)} />;
 
   return (
@@ -68,6 +72,13 @@ export function TransitOpsApp() {
           </nav>
 
           <div className="ml-auto flex items-center gap-2">
+            <button
+             type="button"
+              onClick={handleSignOut}
+             className="rounded-xl px-3 py-2 text-xs font-medium text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-all duration-200"
+             >
+             Sign Out
+           </button>
             <div className="relative">
               <button
                 onClick={() => setMenuOpen((v) => !v)}
